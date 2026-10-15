@@ -1,0 +1,449 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f6f3eb;
+    color: #4a3b32;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory; /* Smooth screen fitting scroll */
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ================= ENVELOPE OVERLAY ================= */
+.envelope-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #e8ded1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.envelope-wrapper {
+    text-align: center;
+    cursor: pointer;
+}
+
+.envelope {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background: #d6be9a;
+    border-radius: 6px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.envelope .flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 110px solid #c5ab85;
+    transform-origin: top;
+    transition: transform 0.6s ease;
+    z-index: 3;
+}
+
+.envelope .pocket {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-left: 150px solid #e3ccaa;
+    border-right: 150px solid #e3ccaa;
+    border-bottom: 100px solid #ecd3af;
+    border-top: 100px solid transparent;
+    z-index: 2;
+    border-radius: 0 0 6px 6px;
+}
+
+.wax-seal {
+    position: absolute;
+    top: 85px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 55px;
+    height: 55px;
+    background: #8b1e22;
+    border-radius: 50%;
+    border: 3px solid #701317;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    z-index: 4;
+}
+
+.tap-instruction {
+    margin-top: 25px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: #6a5849;
+    letter-spacing: 1px;
+}
+
+.envelope-overlay.open .flap {
+    transform: rotateX(180deg);
+}
+
+.envelope-overlay.open {
+    opacity: 0;
+    transition: opacity 0.8s ease 0.4s;
+    pointer-events: none;
+}
+
+/* ================= PAGE CONTAINER & FIT TO SCREEN ================= */
+.main-content {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.page-section {
+    height: 100vh;
+    width: 100%;
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-align: start; /* Locks page perfectly into view */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+/* ================= PAGE 1 & 2 CARDS ================= */
+.header-page, .scratch-page {
+    background-color: #f6f3eb;
+}
+
+.ornate-card {
+    position: relative;
+    background: #ffffff;
+    border: 2px solid #d4af37;
+    border-radius: 12px;
+    padding: 30px 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+    text-align: center;
+    width: 100%;
+}
+
+.corner-flower {
+    position: absolute;
+    font-size: 16px;
+    opacity: 0.7;
+}
+
+.top-left { top: 8px; left: 8px; }
+.top-right { top: 8px; right: 8px; }
+.bottom-left { bottom: 8px; left: 8px; }
+.bottom-right { bottom: 8px; right: 8px; }
+
+.header-page h2 {
+    font-family: 'Cormorant Garamond', serif;
+    color: #8c6d53;
+    font-size: 18px;
+    margin-top: 0;
+}
+
+.invite-msg {
+    font-size: 13px;
+    color: #6a5f58;
+    line-height: 1.4;
+    margin: 12px 0;
+}
+
+.couple-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    color: #7b1113;
+    margin: 6px 0;
+}
+
+.parents {
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.ampersand-divider {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: #b59868;
+    margin: 6px 0;
+}
+
+/* Scratch Card Page */
+.scratch-page h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: #7b1113;
+    letter-spacing: 2px;
+    margin-top: 0;
+}
+
+.scratch-container {
+    position: relative;
+    width: 300px;
+    height: 100px;
+    margin: 20px auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.hidden-date {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: bold;
+    color: #7b1113;
+}
+
+#scratchCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.scratch-hint {
+    font-size: 13px;
+    color: #888;
+}
+
+/* ================= EVENT BACKGROUND IMAGES ================= */
+
+/* Event 1: Engagement (Dark Fairy Light Background) */
+.theme-engagement {
+    background-image: url('Engagement.jfif');
+}
+
+/* Event 2: Kirtan & Oil (Radha Krishna Peacock Arch Background) */
+.theme-kirtan {
+    background-image: url('Kirtan.jfif');
+}
+
+/* Event 3: Wedding (Floral Garland & Diya Background) */
+.theme-wedding {
+    background-image: url('Wedding.jfif');
+}
+
+/* Glass Card Overlay for Event Info */
+.event-card-glass {
+    border-radius: 20px;
+    padding: 28px 22px;
+    width: 100%;
+    text-align: center;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* Dark Card Styling (For Engagement) */
+.dark-card {
+    background: rgba(15, 23, 42, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+.dark-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    color: #f1d388;
+    margin: 8px 0;
+}
+
+.dark-card .event-desc {
+    color: #e2e8f0;
+    font-style: italic;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.dark-card .event-details p {
+    font-size: 14px;
+    color: #f8fafc;
+    margin: 10px 0;
+    text-align: left;
+}
+
+/* Light Card Styling (For Kirtan & Wedding) */
+.light-card {
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    color: #3b322c;
+}
+
+.light-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    color: #7b1113;
+    margin: 8px 0;
+}
+
+.light-card .event-desc {
+    color: #666;
+    font-style: italic;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.light-card .event-details p {
+    font-size: 14px;
+    color: #3b322c;
+    margin: 10px 0;
+    text-align: left;
+}
+
+.event-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #7b1113;
+    color: #fff;
+    border-radius: 12px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Buttons */
+.direction-btn {
+    display: block;
+    margin-top: 22px;
+    padding: 12px 18px;
+    background-color: #4a3b32;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.btn-gold {
+    background-color: #c5a059;
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+/* ================= FAMILY SECTION ================= */
+.family-page {
+    background: #dbe4d8;
+    text-align: center;
+}
+
+.section-subtitle {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #6b7866;
+    margin-bottom: 5px;
+}
+
+.section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    color: #7b1113;
+    margin: 0;
+    font-style: italic;
+}
+
+.divider, .card-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 12px 0;
+}
+
+.divider::before, .divider::after,
+.card-divider::before, .card-divider::after {
+    content: "";
+    width: 50px;
+    height: 1px;
+    background-color: #c0b298;
+    margin: 0 10px;
+}
+
+.family-card {
+    background-color: #f7f4ed;
+    border: 1px solid #e1d3bf;
+    border-radius: 16px;
+    padding: 25px 20px;
+    width: 100%;
+    margin-top: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.card-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #8c7b6b;
+    margin: 0;
+}
+
+.gracious-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: #7a6b5d;
+    margin: 12px 0 15px 0;
+}
+
+.family-member {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: #3b322c;
+    margin: 4px 0;
+}
+
+.ampersand {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: #a08e7c;
+    margin: 2px 0;
+}
+
+.final-footer {
+    margin-top: 25px;
+}
+
+.final-footer h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    color: #7b1113;
+    margin: 0;
+}
+
+.final-footer p {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #666;
+}
