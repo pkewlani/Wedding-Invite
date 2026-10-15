@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <!-- REAL 3D ENVELOPE OVERLAY -->
+    <div id="envelope-overlay" class="envelope-overlay">
+        <div class="envelope-wrapper" onclick="openEnvelope()">
+            <div class="envelope">
+                <div class="flap"></div>
+                <div class="pocket"></div>
+                <div class="wax-seal">
+                    <span>TAP</span>
+                </div>
+            </div>
+            <p class="tap-instruction">Tap seal to open invitation</p>
+        </div>
+    </div>
+
+    <!-- MAIN INVITATION CONTENT -->
+    <div id="main-content" class="main-content hidden">
+        
+        <!-- HEADER SECTION (Page 1) -->
+        <section class="page-section header-page">
+            <div class="ornate-card">
+                <div class="corner-flower top-left">🌸</div>
+                <div class="corner-flower top-right">🌸</div>
+                <div class="corner-flower bottom-left">🌸</div>
+                <div class="corner-flower bottom-right">🌸</div>
+
+                <h2>|| Shree Ganeshaya Namah ||</h2>
+                <p class="invite-msg">We cordially invite you to witness the beginning of our forever and celebrate the wedding ceremony of</p>
+                
+                <h1 class="couple-name">Juhi</h1>
+                <p class="parents">D/o Mr. Daulat Kewlani & Mrs. Aarti Kewlani</p>
+                
+                <div class="ampersand-divider">with</div>
+                
+                <h1 class="couple-name">Aditya</h1>
+                <p class="parents">S/o Mr. Dilip Lilani & Mrs. Priya Lilani</p>
+            </div>
+        </section>
+
+        <!-- SCRATCH CARD DATE REVEAL (Page 2) -->
+        <section class="page-section scratch-page">
+            <div class="ornate-card text-center">
+                <h3>SAVE THE DATE</h3>
+                <div class="scratch-container">
+                    <canvas id="scratchCanvas" width="300" height="100"></canvas>
+                    <div class="hidden-date">
+                        <span>16th Nov 2026</span>
+                    </div>
+                </div>
+                <p class="scratch-hint">✨ Scratch above to reveal the date! ✨</p>
+            </div>
+        </section>
+
+        <!-- EVENT 1: ENGAGEMENT (Full Page - Pastel Blush) -->
+        <section class="page-section event-page theme-engagement">
+            <div class="event-card-full">
+                <span class="event-badge">Pre-Wedding</span>
+                <h4>Engagement</h4>
+                <p class="event-desc">Rings exchange and blessings</p>
+                <div class="event-details">
+                    <p><strong>📅 Date:</strong> SATURDAY · 14th November 2026</p>
+                    <p><strong>⏰ Time:</strong> 08:00 PM onwards</p>
+                    <p><strong>📍 Venue:</strong> Seasons Banquets, Akurdi</p>
+                </div>
+                <a href="https://maps.app.goo.gl/Q686x46cmF4ywh5k7" target="_blank" class="direction-btn">📍 Open in Google Maps</a>
+            </div>
+        </section>
+
+        <!-- EVENT 2: KIRTAN & OIL CEREMONY (Full Page - Pastel Ochre) -->
+        <section class="page-section event-page theme-kirtan">
+            <div class="event-card-full">
+                <span class="event-badge">Devotional Rituals</span>
+                <h4>Kirtan and Oil Ceremony</h4>
+                <p class="event-desc">A joyful evening of Devotional music, Blessings and Sacred Rituals.</p>
+                <div class="event-details">
+                    <p><strong>📅 Date:</strong> SUNDAY · 15th November 2026</p>
+                    <p><strong>⏰ Time:</strong> 05:00 PM onwards</p>
+                    <p><strong>📍 Venue:</strong> The Residence, Opposite Softy Junction</p>
+                </div>
+                <a href="https://maps.app.goo.gl/AP9P7KwLmYdaksRs9" target="_blank" class="direction-btn">📍 Open in Google Maps</a>
+            </div>
+        </section>
+
+        <!-- EVENT 3: WEDDING (Full Page - Pastel Sage Green) -->
+        <section class="page-section event-page theme-wedding">
+            <div class="event-card-full">
+                <span class="event-badge">The Main Ceremony</span>
+                <h4>Wedding</h4>
+                <p class="event-desc">The sacred wedding ceremony and exchange of vows.</p>
+                <div class="event-details">
+                    <p><strong>📅 Date:</strong> MONDAY · 16th November 2026</p>
+                    <p><strong>⏰ Time:</strong> 11:30 AM onwards followed by Lunch</p>
+                    <p><strong>👗 Dress Code:</strong> Traditional Ethnic Attire</p>
+                    <p><strong>📍 Venue:</strong> The Palace Hall, Bengaluru</p>
+                </div>
+                <a href="https://maps.app.goo.gl/qRFt1ExmnvGgLDru5" target="_blank" class="direction-btn">📍 Open in Google Maps</a>
+            </div>
+        </section>
+
+        <!-- BRIDE'S FAMILY SECTION (Page 6) -->
+        <section class="page-section family-page">
+            <p class="section-subtitle">WITH LOVE</p>
+            <h3 class="section-title">The families</h3>
+            
+            <div class="divider">
+                <span>✿</span>
+            </div>
+
+            <div class="family-card">
+                <p class="card-label">BRIDE'S FAMILY</p>
+                <div class="card-divider">
+                    <span>✿</span>
+                </div>
+                
+                <p class="gracious-text">Awaiting your gracious presence</p>
+                
+                <p class="family-member">Mr. Daulat Kewlani</p>
+                <p class="ampersand">&</p>
+                <p class="family-member">Mrs. Aarti Kewlani</p>
+            </div>
+
+            <footer class="final-footer">
+                <h3>Juhi & Sagar</h3>
+            </footer>
+        </section>
+
+    </div>
+
+    <script>
+        function openEnvelope() {
+            const overlay = document.getElementById('envelope-overlay');
+            const mainContent = document.getElementById('main-content');
+            
+            overlay.classList.add('open');
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                mainContent.classList.remove('hidden');
+            }, 1000);
+        }
+
+        // Scratch Card Code
+        const canvas = document.getElementById('scratchCanvas');
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#C5A059';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#fff';
+        ctx.font = '600 18px Montserrat';
+        ctx.textAlign = 'center';
+        ctx.fillText('✨ Scratch Here! ✨', canvas.width / 2, canvas.height / 2 + 6);
+
+        let isDrawing = false;
+        let confettiTriggered = false;
+
+        function scratch(e) {
+            if (!isDrawing) return;
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX || e.touches[0].clientX) - rect.left;
+            const y = (e.clientY || e.touches[0].clientY) - rect.top;
+            
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.beginPath();
+            ctx.arc(x, y, 22, 0, Math.PI * 2, false);
+            ctx.fill();
+
+            checkScratchProgress();
+        }
+
+        function checkScratchProgress() {
+            if (confettiTriggered) return;
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const pixels = imageData.data;
+            let transparentPixels = 0;
+
+            for (let i = 3; i < pixels.length; i += 4) {
+                if (pixels[i] === 0) transparentPixels++;
+            }
+
+            if (transparentPixels > (canvas.width * canvas.height) * 0.4) {
+                confettiTriggered = true;
+                confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+                canvas.style.transition = 'opacity 0.6s ease';
+                canvas.style.opacity = '0';
+                setTimeout(() => canvas.style.display = 'none', 600);
+            }
+        }
+
+        canvas.addEventListener('mousedown', () => isDrawing = true);
+        canvas.addEventListener('mousemove', scratch);
+        window.addEventListener('mouseup', () => isDrawing = false);
+
+        canvas.addEventListener('touchstart', () => isDrawing = true);
+        canvas.addEventListener('touchmove', scratch);
+        window.addEventListener('touchend', () => isDrawing = false);
+    </script>
+</body>
+</html>

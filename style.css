@@ -1,0 +1,411 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f6f3eb;
+    color: #4a3b32;
+    overflow-x: hidden;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ================= ENVELOPE ANIMATION ================= */
+.envelope-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #e8ded1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.envelope-wrapper {
+    text-align: center;
+    cursor: pointer;
+}
+
+.envelope {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background: #d6be9a;
+    border-radius: 6px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.envelope .flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 110px solid #c5ab85;
+    transform-origin: top;
+    transition: transform 0.6s ease;
+    z-index: 3;
+}
+
+.envelope .pocket {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-left: 150px solid #e3ccaa;
+    border-right: 150px solid #e3ccaa;
+    border-bottom: 100px solid #ecd3af;
+    border-top: 100px solid transparent;
+    z-index: 2;
+    border-radius: 0 0 6px 6px;
+}
+
+.wax-seal {
+    position: absolute;
+    top: 85px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 55px;
+    height: 55px;
+    background: #8b1e22;
+    border-radius: 50%;
+    border: 3px solid #701317;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    z-index: 4;
+}
+
+.tap-instruction {
+    margin-top: 25px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: #6a5849;
+    letter-spacing: 1px;
+}
+
+.envelope-overlay.open .flap {
+    transform: rotateX(180deg);
+}
+
+.envelope-overlay.open {
+    opacity: 0;
+    transition: opacity 0.8s ease 0.4s;
+    pointer-events: none;
+}
+
+/* ================= PAGE LAYOUT ================= */
+.main-content {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.page-section {
+    min-height: 100vh;
+    width: 100%;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Page 1 & 2 Cards */
+.header-page, .scratch-page {
+    background: #f6f3eb;
+}
+
+.ornate-card {
+    position: relative;
+    background: #ffffff;
+    border: 2px solid #d4af37;
+    border-radius: 12px;
+    padding: 35px 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+    text-align: center;
+    width: 100%;
+}
+
+.corner-flower {
+    position: absolute;
+    font-size: 16px;
+    opacity: 0.7;
+}
+
+.top-left { top: 8px; left: 8px; }
+.top-right { top: 8px; right: 8px; }
+.bottom-left { bottom: 8px; left: 8px; }
+.bottom-right { bottom: 8px; right: 8px; }
+
+.header-page h2 {
+    font-family: 'Cormorant Garamond', serif;
+    color: #8c6d53;
+    font-size: 18px;
+    margin-top: 0;
+}
+
+.invite-msg {
+    font-size: 13px;
+    color: #6a5f58;
+    line-height: 1.5;
+    margin: 15px 0;
+}
+
+.couple-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    color: #7b1113;
+    margin: 8px 0;
+}
+
+.parents {
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 12px;
+}
+
+.ampersand-divider {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 24px;
+    color: #b59868;
+    margin: 10px 0;
+}
+
+/* Scratch Page */
+.scratch-page h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: #7b1113;
+    letter-spacing: 2px;
+    margin-top: 0;
+}
+
+.scratch-container {
+    position: relative;
+    width: 300px;
+    height: 100px;
+    margin: 20px auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.hidden-date {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: bold;
+    color: #7b1113;
+}
+
+#scratchCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.scratch-hint {
+    font-size: 13px;
+    color: #888;
+}
+
+/* ================= PASTEL THEMED EVENT PAGES ================= */
+.event-page {
+    justify-content: center;
+}
+
+/* Theme 1: Engagement - Pastel Rose / Blush */
+.theme-engagement {
+    background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+}
+
+/* Theme 2: Kirtan - Pastel Warm Ochre */
+.theme-kirtan {
+    background: linear-gradient(135deg, #fff8e1 0%, #ffe0b2 100%);
+}
+
+/* Theme 3: Wedding - Pastel Sage Green */
+.theme-wedding {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+}
+
+.event-card-full {
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 20px;
+    padding: 35px 25px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    border: 1px solid rgba(255,255,255,0.8);
+}
+
+.event-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #7b1113;
+    color: #fff;
+    border-radius: 12px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.event-card-full h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    color: #7b1113;
+    margin: 5px 0 10px 0;
+}
+
+.event-desc {
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+.event-details p {
+    font-size: 15px;
+    margin: 12px 0;
+    color: #3b322c;
+    text-align: left;
+}
+
+.direction-btn {
+    display: block;
+    margin-top: 30px;
+    padding: 14px 20px;
+    background-color: #4a3b32;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: background 0.3s ease;
+}
+
+.direction-btn:hover {
+    background-color: #7b1113;
+}
+
+/* ================= FAMILY SECTION PAGE ================= */
+.family-page {
+    background: #dbe4d8;
+    text-align: center;
+}
+
+.section-subtitle {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #6b7866;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    color: #7b1113;
+    margin: 0;
+    font-style: italic;
+}
+
+.divider, .card-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+.divider::before, .divider::after,
+.card-divider::before, .card-divider::after {
+    content: "";
+    width: 50px;
+    height: 1px;
+    background-color: #c0b298;
+    margin: 0 10px;
+}
+
+.family-card {
+    background-color: #f7f4ed;
+    border: 1px solid #e1d3bf;
+    border-radius: 16px;
+    padding: 30px 20px;
+    width: 100%;
+    margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.card-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #8c7b6b;
+    margin: 0;
+}
+
+.gracious-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: #7a6b5d;
+    margin: 15px 0 20px 0;
+}
+
+.family-member {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    color: #3b322c;
+    margin: 5px 0;
+}
+
+.ampersand {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: #a08e7c;
+    margin: 3px 0;
+}
+
+.final-footer {
+    margin-top: 40px;
+}
+
+.final-footer h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: #7b1113;
+    margin: 0;
+}
+
+.final-footer p {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #666;
+}
